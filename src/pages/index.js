@@ -1,5 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import moment from 'moment-timezone'
+import { App } from '../components/App.styles'
 
 function getUrlParameter(name) {
   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]')
@@ -9,26 +11,25 @@ function getUrlParameter(name) {
     ? ''
     : decodeURIComponent(results[1].replace(/\+/g, ' '))
 }
-//SO post https://stackoverflow.com/questions/46970132/convert-us-central-time-to-different-time-zones-using-moment-js
+
+function convertTimezone(eventTime, localTimezone) {
+  return eventTime.tz(localTimezone).format('MMMM Do YYYY, h:mm a')
+}
+
 const mockTimezone = 'America/New_York'
+const eventTime = moment.tz(
+  `${getUrlParameter('day')} ${getUrlParameter('time')}`,
+  'YYYY-MM-DD h:mm a',
+  getUrlParameter('timezone')
+)
 
 const IndexPage = () => (
-  <div>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Original meeting details:</p>
-    <ul>
-      <li>{getUrlParameter('day')}</li>
-      <li>{getUrlParameter('time')}</li>
-      <li>{getUrlParameter('timezone')}</li>
-    </ul>
-    <p>Meeting details in your timezone:</p>
-    <ul>
-      <li />
-      <li />
-      <li>{mockTimezone}</li>
-    </ul>
-  </div>
+  <App>
+    <h3>Your event occurs on</h3>
+    <h2>{convertTimezone(eventTime, mockTimezone)}</h2>
+    <p>Time and date are based on your timezone</p>
+    <p>{mockTimezone}</p>
+  </App>
 )
 
 export default IndexPage
