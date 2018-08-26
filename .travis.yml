@@ -12,3 +12,4 @@ deploy:
   provider: surge
   project: ./public/
   domain: timezoner.surge.sh
+  skip_cleanup: true
