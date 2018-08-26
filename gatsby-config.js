@@ -5,7 +5,8 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-plugin-emotion`
+      resolve: `gatsby-plugin-emotion`,
     },
+    `gatsby-plugin-react-next`
   ],
 }
