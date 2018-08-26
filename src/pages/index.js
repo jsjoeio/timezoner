@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Link from 'gatsby-link'
 import moment from 'moment-timezone'
 import { App } from '../components/App.styles'
@@ -7,6 +7,7 @@ class IndexPage extends Component {
   state = {
     day: '',
     error: false,
+    loading: false,
     time: '',
     timezone: '',
     userTimezone: '',
@@ -14,7 +15,8 @@ class IndexPage extends Component {
 
   componentWillMount() {
     this.setState({
-      userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      loading: true,
     })
   }
 
@@ -30,6 +32,7 @@ class IndexPage extends Component {
       }
 
       this.setState({
+        loading: false,
         day: getUrlParameter('day'),
         time: getUrlParameter('time'),
         timezone: getUrlParameter('timezone'),
@@ -42,7 +45,7 @@ class IndexPage extends Component {
   }
 
   render() {
-    const { userTimezone } = this.state
+    const { loading, userTimezone } = this.state
 
     const eventTime = moment.tz(
       `${this.state.day} ${this.state.time}`,
@@ -53,9 +56,14 @@ class IndexPage extends Component {
     return (
       <App>
         <h3>Your event occurs on</h3>
-        <h2>{this.convertTimezone(eventTime, userTimezone)}</h2>
-        <p>Time and date are based on your timezone</p>
-        <p>{userTimezone}</p>
+        {loading && <h2>Loading...</h2>}
+        {!loading && (
+          <Fragment>
+            <h2>{this.convertTimezone(eventTime, userTimezone)}</h2>
+            <p>Time and date are based on your timezone</p>
+            <p>{userTimezone}</p>
+          </Fragment>
+        )}
       </App>
     )
   }
