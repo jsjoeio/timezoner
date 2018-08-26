@@ -8,3 +8,7 @@ install:
 - npm install
 script:
   - gatsby build
+deploy:
+  provider: surge
+  project: ./public/
+  domain: timezoner.surge.sh
