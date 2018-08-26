@@ -6,8 +6,16 @@ import { App } from '../components/App.styles'
 class IndexPage extends Component {
   state = {
     day: '',
+    error: false,
     time: '',
     timezone: '',
+    userTimezone: '',
+  }
+
+  componentWillMount() {
+    this.setState({
+      userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    })
   }
 
   componentDidMount() {
@@ -34,18 +42,20 @@ class IndexPage extends Component {
   }
 
   render() {
-    const mockTimezone = 'America/New_York'
+    const { userTimezone } = this.state
+
     const eventTime = moment.tz(
       `${this.state.day} ${this.state.time}`,
       'YYYY-MM-DD h:mm a',
       this.state.timezone
     )
+
     return (
       <App>
         <h3>Your event occurs on</h3>
-        <h2>{this.convertTimezone(eventTime, mockTimezone)}</h2>
+        <h2>{this.convertTimezone(eventTime, userTimezone)}</h2>
         <p>Time and date are based on your timezone</p>
-        <p>{mockTimezone}</p>
+        <p>{userTimezone}</p>
       </App>
     )
   }
