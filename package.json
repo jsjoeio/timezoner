@@ -1,8 +1,8 @@
 {
   "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "description": "Timezoner",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "JavaScript Joe <jjprevite@gmail.com>",
   "dependencies": {
     "emotion": "^9.2.6",
     "emotion-server": "^9.2.6",
