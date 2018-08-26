@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Timezoner",
+  "name": "timezoner",
+  "description": "a simple Chrome extension to help you coordinate across timezones",
   "version": "1.0.0",
   "author": "JavaScript Joe <jjprevite@gmail.com>",
   "dependencies": {
