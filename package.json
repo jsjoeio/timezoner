@@ -68,6 +68,7 @@
     "testURL": "http://localhost",
     "setupFiles": [
       "<rootDir>/loadershim.js"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/setup-test-env.js"
   }
 }
