@@ -1,29 +1,22 @@
 import React, { Component, Fragment } from 'react'
-import Link from 'gatsby-link'
 import moment from 'moment-timezone'
+import Layout from '../components/Layout'
 import { App } from '../components/App.styles'
 
 class IndexPage extends Component {
   state = {
     day: '',
     error: false,
-    loading: false,
+    loading: true,
     time: '',
     timezone: '',
-    userTimezone: '',
-  }
-
-  componentWillMount() {
-    this.setState({
-      userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      loading: true,
-    })
+    userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   }
 
   componentDidMount() {
     if (typeof window !== 'undefined') {
       function getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]')
+        name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]')
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)')
         var results = regex.exec(window.location.search)
         return results === null
@@ -54,17 +47,19 @@ class IndexPage extends Component {
     )
 
     return (
-      <App>
-        <h3>Your event occurs on</h3>
-        {loading && <h2>Loading...</h2>}
-        {!loading && (
-          <Fragment>
-            <h2>{this.convertTimezone(eventTime, userTimezone)}</h2>
-            <p>Time and date are based on your timezone</p>
-            <p>{userTimezone}</p>
-          </Fragment>
-        )}
-      </App>
+      <Layout>
+        <App>
+          <h3>Your event occurs on</h3>
+          {loading && <h2>Loading...</h2>}
+          {!loading && (
+            <Fragment>
+              <h2>{this.convertTimezone(eventTime, userTimezone)}</h2>
+              <p>Time and date are based on your timezone</p>
+              <p>{userTimezone}</p>
+            </Fragment>
+          )}
+        </App>
+      </Layout>
     )
   }
 }
