@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import Link from 'gatsby-link'
 import moment from 'moment-timezone'
 import { App } from '../components/App.styles'
 
@@ -7,23 +6,16 @@ class IndexPage extends Component {
   state = {
     day: '',
     error: false,
-    loading: false,
+    loading: true,
     time: '',
     timezone: '',
-    userTimezone: '',
-  }
-
-  componentWillMount() {
-    this.setState({
-      userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      loading: true,
-    })
+    userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   }
 
   componentDidMount() {
     if (typeof window !== 'undefined') {
       function getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]')
+        name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]')
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)')
         var results = regex.exec(window.location.search)
         return results === null
