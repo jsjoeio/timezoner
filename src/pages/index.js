@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import moment from 'moment-timezone'
+import Layout from '../components/Layout'
 import { App } from '../components/App.styles'
 
 class IndexPage extends Component {
@@ -46,17 +47,19 @@ class IndexPage extends Component {
     )
 
     return (
-      <App>
-        <h3>Your event occurs on</h3>
-        {loading && <h2>Loading...</h2>}
-        {!loading && (
-          <Fragment>
-            <h2>{this.convertTimezone(eventTime, userTimezone)}</h2>
-            <p>Time and date are based on your timezone</p>
-            <p>{userTimezone}</p>
-          </Fragment>
-        )}
-      </App>
+      <Layout>
+        <App>
+          <h3>Your event occurs on</h3>
+          {loading && <h2>Loading...</h2>}
+          {!loading && (
+            <Fragment>
+              <h2>{this.convertTimezone(eventTime, userTimezone)}</h2>
+              <p>Time and date are based on your timezone</p>
+              <p>{userTimezone}</p>
+            </Fragment>
+          )}
+        </App>
+      </Layout>
     )
   }
 }
