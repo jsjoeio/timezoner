@@ -7,7 +7,7 @@ import Footer from '../components/Footer/Footer'
 
 const IndexPage = () => (
   <div>
-    {validateURLParams(['day', 'time', 'timezone']) ? <EventCard /> : <h1>Oops!</h1>}
+    {validateURLParams(['day', 'time', 'timezone']) ? <EventCard /> : <h1 style={{textAlign: 'center'}}>Welcome to Timezoner!</h1>}
     <Footer />
   </div>
 )
