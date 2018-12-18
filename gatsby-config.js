@@ -7,6 +7,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-emotion`,
     },
-    `gatsby-plugin-react-next`
+    `gatsby-plugin-react-next`,
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
   ],
 }
