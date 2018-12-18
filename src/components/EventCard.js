@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import Link from 'gatsby-link'
 import moment from 'moment-timezone'
 import { Card } from './EventCard.styles'
 import { getUrlParameter } from '../utils/functions'
@@ -14,7 +13,7 @@ class EventCard extends Component {
     userTimezone: '',
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.setState({
       userTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       loading: true,
