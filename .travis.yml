@@ -11,5 +11,5 @@ script:
 deploy:
   provider: surge
   project: ./public/
-  domain: timezoner.surge.sh
+  domain: https://timezoner.surge.sh
   skip_cleanup: true
