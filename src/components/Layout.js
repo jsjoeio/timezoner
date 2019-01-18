@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import './index.css'
+import Navbar from './atoms/Navbar'
 
 export default ({ children }) => (
   <StaticQuery
@@ -17,6 +18,9 @@ export default ({ children }) => (
     render={data => (
       <>
         <Helmet titleTemplate={`%s | ${data.site.siteMetadata.title}`} defaultTitle={data.site.siteMetadata.title} />
+        <header id='header'>
+          <Navbar />
+        </header>
         <div
           style={{
             margin: '0 auto',
