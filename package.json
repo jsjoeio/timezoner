@@ -38,7 +38,9 @@
     "babel-preset-gatsby": "^0.1.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.0.0",
-    "prettier": "^1.16.1"
+    "jest-dom": "^3.0.0",
+    "prettier": "^1.16.1",
+    "react-testing-library": "^5.4.4"
   },
   "repository": {
     "type": "git",
