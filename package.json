@@ -1,6 +1,6 @@
 {
   "name": "timezoner",
-  "description": "a simple Chrome extension to help you coordinate across timezones",
+  "description": "the website for the 'timezoner' Chrome extension",
   "version": "1.1.0",
   "author": "JavaScript Joe <jjprevite@gmail.com>",
   "dependencies": {
