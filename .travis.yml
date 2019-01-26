@@ -1,17 +1,33 @@
 language: node_js
 node_js:
-  - "stable"
-cache:
-directories:
-  - "node_modules"
+- stable
 install:
-- npm install
+- npm ci
+cache:
+  directories:
+  - node_modules
 script:
-  - gatsby build
+- gatsby build
+
+before_deploy:
+- export TRAVIS_TAG="$TRAVIS_BUILD_NUMBER"
+- echo "$TRAVIS_TAG" "$TRAVIS_COMMIT"
+- git config --local user.name "$USER_NAME"
+- git config --local user.email "$USER_EMAIL"
+- git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT"
+
 deploy:
-  provider: surge
-  project: ./public/
-  domain: https://timezoner.surge.sh
+  provider: releases
+  tag_name: $TRAVIS_TAG
+  target_commitish: $TRAVIS_COMMIT
+  name: $TRAVIS_TAG
+  overwrite: true
   skip_cleanup: true
+  api_key: $GITHUB_TOKEN
+  file_glob: true
+  api_key:
+    secure: cUyTYJMtauR55/AIOE9xswyh+9b2kjy7lDZgU1nlWISDH0y62PG3YqfUR2ngTqHim6DbM7HLdK3IysEMzQsm8VO4JdKK1N8Vjh2RlgFyfNpl5gWfG9CdJWdUCjPPMRjr2pC7Z3dX72MaJy07kzMB30hfGjPDK47AN7BkIjMpYOWNU1jzLJ0GfWR56keV1Sr0WtJIrGp2z7j5H8CN9q58brYujw8LOlzZCPvVhDTfbaO+fVuu2X1HAIKnzq2+RPjVSmKMu7stSw2HLxfOaaPUZZLBq0a6vlkHSaeRVmnsqeCkD4I8OsiPBq4RXu2asPQpTCOevPD0BMtd6M1v1im8UYdFTd0OP8XhERvahQ2QVngUdZaM8hg4f38MxDLb2PWDrrPvpjbI1NK3NSwPjuA4S9KE1zCo6b9Wu1av4K5oMQmrEqvOTqy4CM/sIfdU9yBrVbHZHgjZyxJ5B/5X9w+YStvAVnBBjyoKaunXwHYO/akHkbm3lopsgMBf8Q69LxaKO9zYJkraiAnEi8waMwI4IMw4ULC2QGGAB+HqcTNdljYbi/0ghD0iZvrA/Kj8ZwWoVNbViAUwNpoQzy/Auq8FaNMT8bfVmYbXlBJzIM4VL7lZ/YAbfkoHLkXPDiid0QlQOzMAWXF+hXZAWlpmdUK8wvNWUUknjvjhJ2TldVGwWGQ=
+  file: timezoner/*/**
   on:
-    branch: master
+    repo: andrewmcodes/timezoner
+    all_branches: true
