@@ -1,4 +1,4 @@
-export function getUrlParameter(name) {
+export function getUrlParameter (name) {
   if (typeof window !== 'undefined') {
     // eslint-disable-next-line
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]')
@@ -10,7 +10,7 @@ export function getUrlParameter(name) {
   }
 }
 
-export function validateURLParams(params) {
+export function validateURLParams (params) {
   // It expects an array of URL params you want to check.
   // Then it checks all to make sure they're all valid
   return params.every(element => getUrlParameter(element))
